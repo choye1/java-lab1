@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class PostsCreateController {
 
     @Autowired
-    PostService postsService;
+    PostService postService;
 
 
     @RequestMapping(path = "/new", method = RequestMethod.GET)
@@ -20,10 +21,9 @@ public class PostsCreateController {
         return "create";
     }
 
-    @RequestMapping(path = "/new", method = RequestMethod.POST)
+    @PostMapping("/new")
     public String doCreate(@ModelAttribute("text") String text) {
-        postsService.create(text);
-        System.out.println("Создан");
+        postService.create(text);
         return "redirect:/";
     }
 }
