@@ -14,7 +14,6 @@ public class PostService {
     @Autowired
     PostRepository postRepository;
 
-   // ArrayList<Post> posts = new ArrayList<Post>();
     public PostService() {
 
 
@@ -25,8 +24,7 @@ public class PostService {
         return StreamSupport.stream(postRepository.findAll().spliterator(), false).toList();
     }
 
-        //posts.add(new Post(listAllPosts().getLast().getId() + 1, text, new Date(),2));
-    public void create(final String text) {
+    public void create(String text) {
         Post post = new Post(null, text, new Date());
         postRepository.save(post);
     }
